@@ -89,7 +89,7 @@ public class PressMyPetals : BaseSettingsPlugin<PressMyPetalsSettings>
                 if (selectedSkills.Count > 1) {
                     var bestCandidate = selectedSkills
                         .OrderByDescending(p => p.Timer.IsRunning ? p.Timer.Elapsed.TotalSeconds : short.MaxValue)
-                        .ThenBy(p => p.Priority)
+                        .ThenByDescending(p => p.Priority)
                         .FirstOrDefault();
                     if (bestCandidate != null) {
                         chosenSkill = bestCandidate;
