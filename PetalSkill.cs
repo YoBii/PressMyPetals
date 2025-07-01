@@ -95,7 +95,8 @@ namespace PressMyPetals {
                 var s = SkillButton.Children[2].Text;
                 if (s != null && s.Length > 0) {
                     try {
-                        return int.Parse(SkillButton.Children[2].Text);
+                        s = s.Replace(",", "").Replace(".", "");
+                        return int.Parse(s);
                     } catch (Exception e) {
                         DebugWindow.LogError($"Failed to parse current charges for {Name}: {e.Message}");
                         return 0;

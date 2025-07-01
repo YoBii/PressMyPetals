@@ -4,8 +4,7 @@ using System.Linq;
 
 namespace PressMyPetals {
     internal static class Util {
-        internal static IEnumerable<T> Traverse<T>(this IEnumerable<T> items,
-Func<T, IEnumerable<T>> childSelector, Func<T, IEnumerable<T>> childSelector2) {
+        internal static IEnumerable<T> Traverse<T>(this IEnumerable<T> items, Func<T, IEnumerable<T>> childSelector, Func<T, IEnumerable<T>> childSelector2) {
             var stack = new Stack<T>(items);
             while (stack.Any()) {
                 var next = stack.Pop();
