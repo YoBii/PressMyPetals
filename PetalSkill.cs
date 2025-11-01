@@ -82,7 +82,7 @@ namespace PressMyPetals {
         private Keys ParseHotkey() {
             var indexInParent = (int)SkillButton.IndexInParent;
             var shortcuts = Plugin.GameController.IngameState.ShortcutSettings.Shortcuts;
-            var petalSkillStartIndex = shortcuts.ToList().FindIndex(s => s.Usage.ToString() == "ApexSentinel");
+            var petalSkillStartIndex = shortcuts.ToList().FindIndex(s => s.Usage.ToString() == "ApexSentinel") + 1;
 
             if(indexInParent < 0 || petalSkillStartIndex < 0 || shortcuts.Count < 1) {
                 return Keys.None;
@@ -95,7 +95,7 @@ namespace PressMyPetals {
                 var s = SkillButton.Children[2].Text;
                 if (s != null && s.Length > 0) {
                     try {
-                        s = s.Replace(",", "").Replace(".", "");
+                        s = new string(s.Where(Char.IsDigit).ToArray());
                         return int.Parse(s);
                     } catch (Exception e) {
                         DebugWindow.LogError($"Failed to parse current charges for {Name}: {e.Message}");
